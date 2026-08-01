@@ -1,0 +1,231 @@
+/* ==========================================
+   1. RESET Y FUENTES PERSONALIZADAS
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Mooligat";
+  src: url("./Mooligat Demo.otf");
+}
+
+@font-face {
+  font-family: "Lostar";
+  src: url("./Lostar.ttf");
+}
+
+/* ==========================================
+   2. ESTILOS GENERALES Y PALETA DE COLOR
+   ========================================== */
+body {
+  background-color: #f1ebe9; /* Color de fondo beige suave */
+  color: #4a3b3a;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  padding-bottom: 8vh;
+  overflow-x: hidden;
+}
+
+/* Tipografía de títulos secundarios */
+/* Tipografía de títulos secundarios (Hi there! / Skills and Languages) */
+h2 {
+  font-family: "Mooligat", cursive, sans-serif;
+  font-weight: 100;
+  color: #722f37; /* Color borgoña */
+  font-size: 2.8rem; /* Aumentamos un poco el tamaño para que luzca mejor Mooligat */
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   3. NAVEGACIÓN MENÚ FLOTANTE
+   ========================================== */
+nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  gap: 8px;
+  z-index: 1000;
+}
+
+nav a {
+  color: #722f37;
+  background-color: #ffffff;
+  text-decoration: none;
+  border: 1px solid #722f37;
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #722f37;
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+/* ==========================================
+   4. HEADER / HERO SECTION
+   ========================================== */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  gap: 10px;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header h1 {
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-family: "Mooligat", cursive, sans-serif;
+  font-weight: 100;
+  color: #722f37;
+  line-height: 1.1;
+}
+
+header h2 {
+  color: #b54f42; /* Tono terroso/rojo */
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  margin-bottom: 0;
+}
+
+header button {
+  background-color: #9d0722;
+  color: #ffffff;
+  padding: 10px 28px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(157, 7, 34, 0.25);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+header button:hover {
+  background-color: #722f37;
+  transform: scale(1.05);
+}
+
+header span {
+  color: #58171f;
+  font-size: 0.9rem;
+}
+
+/* ==========================================
+   5. FILA DE CORAZONES
+   ========================================== */
+.divider-corazones {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 0;
+  overflow: hidden;
+}
+
+.divider-corazones img {
+  width: 28px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================
+   6. SECCIONES DE CONTENIDO Y TARJETAS
+   ========================================== */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  margin: 5vh auto;
+}
+
+.card p {
+  color: #4a4a4a;
+  margin-bottom: 1.2rem;
+  font-size: 1.05rem;
+}
+
+/* Foto de Perfil en "Sobre Mí" */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.profile-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #722f37;
+  box-shadow: 0 8px 20px rgba(114, 47, 55, 0.15);
+  margin: 0 auto;
+}
+
+.bio-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Sección de Skills y Lenguajes */
+.skills-grid {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #e2d2ce;
+  border-radius: 12px;
+  padding: 20px;
+  width: 120px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: #722f37;
+}
+
+.skill-card img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.skill-card span {
+  font-weight: 600;
+  color: #722f37;
+  font-size: 0.95rem;
+}
