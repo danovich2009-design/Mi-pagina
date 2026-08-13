@@ -1,9 +1,6 @@
 # My Website
 
-https://mywebdana.netlify.app
-
-<img width="700" height="1000" alt="image" src="" />
-
+file:///d%3A/Bot_stardust/index.html#sobreMi
 
 
 ## Hello!
@@ -26,7 +23,6 @@ This is my first personal website. It includes information about me, my interest
   - My country (Colombia)
   - My passion for horseback riding
   - Favorite video games
-- Decorative band featuring the colors of the Colombian flag
 
 > **Current Status:** **Beta** version (I'm still polishing a few details).
 
