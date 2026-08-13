@@ -1,10 +1,14 @@
 /* ==========================================
-   1. RESET Y FUENTES PERSONALIZADAS
+  1. RESET Y DESPLAZAMIENTO SUAVE
    ========================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @font-face {
@@ -21,23 +25,32 @@
    2. ESTILOS GENERALES Y PALETA DE COLOR
    ========================================== */
 body {
-  background-color: #f1ebe9; /* Color de fondo beige suave */
+  background-color: #f1ebe9; /* Fondo beige suave */
   color: #4a3b3a;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
-  padding-bottom: 8vh;
+  padding-bottom: 4vh;
   overflow-x: hidden;
 }
 
-/* Tipografía de títulos secundarios */
-/* Tipografía de títulos secundarios (Hi there! / Skills and Languages) */
+/* Tipografía Mooligat para todos los h2 */
+h2 {
+  font-family: "Mooligat", cursive, sans-serif;
+  src: url("./Mooligat Demo.otf");
+  font-weight: 100;
+  color: #722f37; /* Color borgoña */
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
 h2 {
   font-family: "Mooligat", cursive, sans-serif;
   font-weight: 100;
   color: #722f37; /* Color borgoña */
-  font-size: 2.8rem; /* Aumentamos un poco el tamaño para que luzca mejor Mooligat */
+  font-size: 2.8rem;
   margin-bottom: 1rem;
 }
+
 
 /* ==========================================
    3. NAVEGACIÓN MENÚ FLOTANTE
@@ -73,7 +86,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   4. HEADER / HERO SECTION
+   4. HEADER / HERO SECTION ANIMADO
    ========================================== */
 header {
   display: flex;
@@ -84,6 +97,17 @@ header {
   gap: 10px;
   text-align: center;
   padding: 40px 20px;
+  /* Movimiento de flotación */
+  animation: floatHeader 4s ease-in-out infinite;
+}
+
+@keyframes floatHeader {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 header h1 {
@@ -100,22 +124,37 @@ header h2 {
   margin-bottom: 0;
 }
 
-header button {
+/* Estilo del botón "Start" */
+header .start-btn {
+  display: inline-block;
+  text-decoration: none;
   background-color: #9d0722;
   color: #ffffff;
   padding: 10px 28px;
   font-size: 1.1rem;
-  border: none;
+  font-weight: 500;
   border-radius: 8px;
-  cursor: pointer;
   box-shadow: 0 4px 10px rgba(157, 7, 34, 0.25);
   transition: all 0.3s ease;
   margin-top: 10px;
+  animation: pulseButton 2s infinite;
 }
 
-header button:hover {
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 0 0 0 rgba(157, 7, 34, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(157, 7, 34, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(157, 7, 34, 0);
+  }
+}
+
+header .start-btn:hover {
   background-color: #722f37;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 header span {
@@ -124,7 +163,7 @@ header span {
 }
 
 /* ==========================================
-   5. FILA DE CORAZONES
+   5. FILA DE CORAZONES (IMÁGENES PEQUEÑAS + MOVIMIENTO)
    ========================================== */
 .divider-corazones {
   width: 100vw;
@@ -133,18 +172,38 @@ header span {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  padding: 30px 0;
+  padding: 25px 0;
   overflow: hidden;
+  background: transparent;
 }
 
-.divider-corazones img {
-  width: 28px;
+.corazones-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  animation: scrollHearts 18s linear infinite;
+}
+
+.corazones-track img {
+  width: 18px; /* Tamaño pequeño */
   height: auto;
   object-fit: contain;
+  filter: brightness(0); /* Los hace completamente negros */
+  transition: transform 0.2s ease;
+}
+
+.corazones-track img:hover {
+  transform: scale(1.4);
+}
+
+@keyframes scrollHearts {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* ==========================================
@@ -157,7 +216,8 @@ main {
 }
 
 .card {
-  margin: 5vh auto;
+  margin: 6vh auto;
+  scroll-margin-top: 40px;
 }
 
 .card p {
@@ -166,7 +226,7 @@ main {
   font-size: 1.05rem;
 }
 
-/* Foto de Perfil en "Sobre Mí" */
+/* Foto de Perfil */
 .profile-container {
   display: flex;
   align-items: center;
@@ -189,7 +249,7 @@ main {
   min-width: 280px;
 }
 
-/* Sección de Skills y Lenguajes */
+/* Sección de Skills */
 .skills-grid {
   display: flex;
   justify-content: flex-start;
@@ -228,4 +288,320 @@ main {
   font-weight: 600;
   color: #722f37;
   font-size: 0.95rem;
+}
+
+/* Sección de Hobbies */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.hobby-card {
+  background-color: #ffffff;
+  border: 1px solid #e2d2ce;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hobby-card:hover {
+  transform: translateY(-4px);
+  border-color: #722f37;
+  box-shadow: 0 6px 15px rgba(114, 47, 55, 0.1);
+}
+
+.hobby-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.hobby-card h3 {
+  font-family: "Lostar", cursive, sans-serif;
+  color: #722f37;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.hobby-card p {
+  font-size: 0.9rem;
+  color: #666666;
+  margin-bottom: 0;
+}
+
+/* Sección Cursos */
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.curso-card {
+  background-color: #ffffff;
+  border: 1px solid #e2d2ce;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.curso-card:hover {
+  transform: translateY(-4px);
+  border-color: #722f37;
+  box-shadow: 0 6px 15px rgba(114, 47, 55, 0.1);
+}
+
+.curso-badge {
+  font-size: 0.8rem;
+  color: #722f37;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.curso-card h3 {
+  font-family: "Lostar", cursive, sans-serif;
+  color: #333333;
+  font-size: 1.2rem;
+  margin-top: 4px;
+}
+
+.curso-plataforma {
+  font-size: 0.9rem;
+  color: #722f37;
+  font-weight: 500;
+}
+
+.curso-fecha {
+  font-size: 0.85rem;
+  color: #8c535a;
+}
+
+/* Sección Proyectos */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.proyecto-card {
+  background-color: #ffffff;
+  border: 1px solid #e2d2ce;
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.proyecto-card:hover {
+  transform: translateY(-4px);
+  border-color: #722f37;
+}
+
+.proyecto-img-placeholder {
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f1ebe9;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.proyecto-card h3 {
+  font-family: "Lostar", cursive, sans-serif;
+  color: #722f37;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.proyecto-tags {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.proyecto-tags span {
+  font-size: 0.75rem;
+  background-color: #f1ebe9;
+  color: #722f37;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+/* ==========================================
+   7. SECCIÓN DE CONTACTO DETALLADA
+   ========================================== */
+.contacto-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #e2d2ce;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #722f37;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e2d2ce;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: #f1ebe9;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #722f37;
+  background-color: #ffffff;
+}
+
+.submit-btn {
+  background-color: #9d0722;
+  color: #ffffff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #722f37;
+  transform: translateY(-2px);
+}
+
+.contacto-info h3 {
+  font-family: "Lostar", cursive, sans-serif;
+  color: #722f37;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.contacto-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.contacto-btn {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #722f37;
+  border: 1px solid #722f37;
+  border-radius: 8px;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.contacto-btn:hover {
+  background-color: #722f37;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: #8c535a;
+  font-size: 0.9rem;
+}
+
+
+/* ==========================================
+   ESTILOS PARA OTRAS FORMAS DE CONTACTO
+   ========================================== */
+.contacto-info {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.contacto-info h3 {
+  font-family: "Mooligat", cursive, sans-serif;
+  color: #722f37;
+  font-size: 1.8rem;
+  font-weight: 100;
+  margin-bottom: 8px;
+}
+
+.contacto-info p {
+  color:#4a3b3a;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Contenedor de las tarjetas/botones */
+
+.contacto-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Diseño de cada botón de contacto */
+
+.contacto-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffffff;
+  color: #722f37;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border:1,5px solid #722f37 ;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(114, 47, 55, 0.08);
+  transition: all 0.3s ease;
+}
+
+.contacto-card .icon {
+  font-size: 1.2rem;
+}
+
+/* Efecto hover (al pasar el mouse) */
+.contacto-card:hover {
+  background-color: #722f37;
+  color:#ffffff;
+  transform: translateY(-3px);
+box-shadow: 0 6px 15px rgba(114, 47, 55, 0.2);
 }
